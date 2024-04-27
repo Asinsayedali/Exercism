@@ -7,6 +7,8 @@ class PhoneNumber:
             raise ValueError("11 digits must start with 1")
         elif len(self.number) > 11:
             raise ValueError("must not be greater than 11 digits")
+        else:
+            print("not value ")
         
 
 
