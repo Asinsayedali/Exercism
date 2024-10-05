@@ -5,14 +5,16 @@ def rebase(input_base, digits, output_base):
         raise ValueError("output base must be >= 2")
     if not all(0 <= d < input_base for d in digits):
         raise ValueError("all digits must satisfy 0 <= d < input base")
-    if not any(d > 0 for d in digits):
+    if all(d <= 0 for d in digits):
         return [0]
 
-    digits.reverse()
-    number = sum(d * input_base ** i for i, d in enumerate(digits))
+    number = 0
+    for d in digits:
+        number = number * input_base + d
 
     result = []
     while number > 0:
-        result.append(number % output_base)
-        number //= output_base
-    return result[::-1]
+        number, remainder = divmod(number, output_base)
+        result.append(remainder)
+    result.reverse()
+    return result
