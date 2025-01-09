@@ -1,4 +1,4 @@
-def rebase(input_base, digits, output_base):
+def rebase(input_base: int, digits: list[int], output_base: int) -> list:
     if input_base < 2:
         raise ValueError("input base must be >= 2")
     if output_base < 2:
@@ -12,7 +12,7 @@ def rebase(input_base, digits, output_base):
     for d in digits:
         number = number * input_base + d
 
-    result = []
+    result: list = []
     while number > 0:
         number, remainder = divmod(number, output_base)
         result.append(remainder)

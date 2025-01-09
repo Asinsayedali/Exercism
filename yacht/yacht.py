@@ -20,7 +20,7 @@ CATEGORY_SCORES = {
     FOURS: 4,
     FIVES: 5,
     SIXES: 6,
-    CHOICE: None
+    CHOICE: None,
 }
 
 
@@ -32,8 +32,11 @@ def score(dice, category):
         return 50 if len(unique_dice) == 1 else 0
 
     if category in CATEGORY_SCORES:
-        return dice_count[CATEGORY_SCORES[category]] * CATEGORY_SCORES[category] if CATEGORY_SCORES[category] else sum(
-            dice)
+        return (
+            dice_count[CATEGORY_SCORES[category]] * CATEGORY_SCORES[category]
+            if CATEGORY_SCORES[category]
+            else sum(dice)
+        )
 
     if category == FULL_HOUSE:
         if len(unique_dice) == 2 and 3 in dice_count.values():
